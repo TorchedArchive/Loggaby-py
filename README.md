@@ -1,6 +1,7 @@
 # Loggaby-py
 The simple and minimal logger for Python.
 
+<hr>
 <p align="center">
   <i>A <a href="https://github.com/Luvella">Luvella</a> project.</i>
   <br>

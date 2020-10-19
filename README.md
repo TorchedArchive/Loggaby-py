@@ -13,6 +13,7 @@
 		<br><br>
 		Oh, it looks like this:<br>
 		<img alt="Preview" src="https://modeus.is-inside.me/V6nRi6i6.png">
+		<br>
 		<i>(Exactly like the original)</i>
 	</p>
 </div>

@@ -1,14 +1,11 @@
 import setuptools
 
-with open('README.md', 'r') as fh: long_description = fh.read()
-
 setuptools.setup(
 	name='loggaby',
-	version='1.1.0',
+	version='1.1.1',
 	author='TorchedSammy',
 	author_email='torchedsammy@gmail.com',
 	description='🐍 Simple, minimal and non-bloated logging for Python.',
-	long_description=long_description,
 	long_description_content_type='text/markdown',
 	url='https://github.com/Loggaby/Loggaby-py',
 	packages=setuptools.find_packages(),

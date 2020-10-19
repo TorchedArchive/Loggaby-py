@@ -2,7 +2,7 @@ from time import localtime, strftime
 
 class Loggaby:
 	def __init__(self, debug=True, levels=[]):
-		self.debug = debug;
+		self.debug = debug
 		self.levels = levels
 
 		levels = [
@@ -70,9 +70,10 @@ class Loggaby:
 				'bright-magenta': '\x1b[95m',
 				'bright-cyan': '\x1b[96m'
 			}
-			formatted = ('{gray}%s {%s}%s {reset}> %s' % (self.time(), level['color'], level['name'], msg)).format(**attribs)
+			if level.get('level') == True: formatted = ('{gray}%s {bold}{underline}{%s}%s{underline-off} {white}> {underline}%s{reset}' % (self.time(), level['color'], level['name'], msg)).format(**attribs)
+			else: formatted = ('{gray}%s {%s}%s {reset}> %s' % (self.time(), level['color'], level['name'], msg)).format(**attribs)
 			print(formatted)
 		return _level
 
 	def time(self):
-		return strftime("%I:%M:%S %p", localtime())
+		return strftime('%I:%M:%S %p', localtime())

@@ -9,7 +9,7 @@
 			<img alt="GitHub stars" src="https://img.shields.io/github/stars/Loggaby/Loggaby-py?style=for-the-badge">
 		</a>
 		<br>
-		Loggaby-py is a direct port (aims to be, anyway) of the [original JS](https://github.com/Loggaby/Loggaby) version. It does 1 thing and does it well: posting nice logs to a terminal. Or perhaps a file? Anywhere you need can be done with a Transport (not present in this Python version as yet).
+		Loggaby-py is a direct port (aims to be, anyway) of the <a href="https://github.com/Loggaby/Loggaby">original JS</a> version. It does 1 thing and does it well: posting nice logs to a terminal. Or perhaps a file? Anywhere you need can be done with a Transport (not present in this Python version as yet).
 		<br><br>
 		Oh, it looks like this:<br>
 		<img alt="Preview" src="https://modeus.is-inside.me/V6nRi6i6.png">

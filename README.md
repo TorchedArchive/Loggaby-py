@@ -9,7 +9,7 @@
 			<img alt="GitHub stars" src="https://img.shields.io/github/stars/Loggaby/Loggaby-py?style=for-the-badge">
 		</a>
 		<br>
-		Loggaby-py is a direct port (aims to be, anyway) of the <a href="https://github.com/Loggaby/Loggaby">original JS</a> version. It does 1 thing and does it well: posting nice logs to a terminal. Or perhaps a file? Anywhere you need can be done with a Transport (not present in this Python version as yet).
+		Loggaby-py is a direct port (aims to be, anyway) of the <a href="https://github.com/Loggaby/Loggaby">original JS</a> version. It does 1 thing and does it well: posting nice logs to a terminal. Or perhaps a file? Anywhere you need can be done with a Transport.
 		<br><br>
 		Oh, it looks like this:<br>
 		<img alt="Preview" src="https://modeus.is-inside.me/V6nRi6i6.png">
@@ -33,6 +33,7 @@
 # Documentation
 #### Loggaby(debug=False, levels=[]) 
 The Loggaby constructor, which creates a `logger` instance.
+  - `transports` {object[]} (An array of objects or specifically [transport instances](loggaby/transports/)) What transports to log to.  An example is provided above. (Default: `[TerminalTransport()]`)
   - `debug` {Boolean} Whether to print debug messages. (Default: `True`)
   - `levels` Additional custom levels to provide. (An array of `dict`s)
 	- `name` {str} Name of the level that appears in the logs

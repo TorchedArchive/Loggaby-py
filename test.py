@@ -1,4 +1,4 @@
-from loggaby import Loggaby
+from loggaby import Loggaby, TerminalTransport
 logger = Loggaby(
 	levels=[
 		{
@@ -23,7 +23,7 @@ logger = Loggaby(
 	]
 );
 
-logger.log('Hello World!');
+logger.log('Hello', 'World!');
 logger.inbox('New message from sammy: Hi there');
 logger.helloworld('!!!');
 logger.status('Online at port 3000');

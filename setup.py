@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
 	name='loggaby',
-	version='1.1.1',
+	version='1.2.0',
 	author='TorchedSammy',
 	author_email='torchedsammy@gmail.com',
 	description='🐍 Simple, minimal and non-bloated logging for Python.',

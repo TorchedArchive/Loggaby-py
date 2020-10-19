@@ -1,10 +1,14 @@
 from time import localtime, strftime
 from re import match
 
+from loggaby.transports.TerminalTransport import TerminalTransport
+from loggaby.transports.Transport import Transport
+
 class Loggaby:
-	def __init__(self, debug=True, levels=[]):
+	def __init__(self, debug=True, levels=[], transports=[TerminalTransport()]):
 		self.debug = debug
 		self.levels = levels
+		self.transports = transports
 
 		levels = [
 			{
@@ -39,7 +43,7 @@ class Loggaby:
 			setattr(self, funcname, _levelfunc)
 
 	def create_level(self, level):
-		def _level(msg):
+		def _level(*args, **kwargs):
 			if match(r'#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$', level.get('color')) is not None: 
 				i = int(level.get('color')[1:], 16)
 				r = (i >> 16) & 255
@@ -81,9 +85,10 @@ class Loggaby:
 				'bright-magenta': '\x1b[95m',
 				'bright-cyan': '\x1b[96m'
 			}
-			if level.get('fatal') == True: formatted = ('{gray}%s {bold}{underline}{%s}%s{underline-off} {white}> {underline}%s{reset}' % (self.time(), level['color'], level['name'], msg)).format(**attribs)
-			else: formatted = ('{gray}%s %s%s {reset}> %s' % (self.time(), color, level['name'], msg)).format(**attribs)
-			print(formatted)
+			for t in self.transports:
+				if level.get('fatal') == True: formatted = ('{gray}%s {bold}{underline}{%s}%s{underline-off} {white}> {underline}%s{reset}' % (self.time(), level['color'], level['name'], args[0])).format(**attribs)
+				else: formatted = ('{gray}%s %s%s {reset}> %s' % (self.time(), color, level['name'], args[0])).format(**attribs)
+				t.transmit(formatted, *args[1::], **kwargs)
 		return _level
 
 	def time(self):

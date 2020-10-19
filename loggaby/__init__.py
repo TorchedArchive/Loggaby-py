@@ -1,4 +1,5 @@
 from time import localtime, strftime
+from re import match
 
 class Loggaby:
 	def __init__(self, debug=True, levels=[]):
@@ -32,11 +33,21 @@ class Loggaby:
 		]
 
 		for level in levels:
-			_level = self.create_level(level)
-			setattr(self, level['name'].lower(), _level)
+			_levelfunc = self.create_level(level)
+			if level.get('call'): funcname = level.get('call')
+			else: funcname = self.make_valid(level['name'].lower())
+			setattr(self, funcname, _levelfunc)
 
 	def create_level(self, level):
 		def _level(msg):
+			if match(r'#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$', level.get('color')) is not None: 
+				i = int(level.get('color')[1:], 16)
+				r = (i >> 16) & 255
+				g = (i >> 8) & 255
+				b = i & 255;
+				color = self.rgb(r, g, b)
+			else:
+				color = '{%s}' % (level.get('color'))
 			attribs = {
 				'reset': '\x1b[0m',
 				'bold': '\x1b[1m',
@@ -70,10 +81,16 @@ class Loggaby:
 				'bright-magenta': '\x1b[95m',
 				'bright-cyan': '\x1b[96m'
 			}
-			if level.get('level') == True: formatted = ('{gray}%s {bold}{underline}{%s}%s{underline-off} {white}> {underline}%s{reset}' % (self.time(), level['color'], level['name'], msg)).format(**attribs)
-			else: formatted = ('{gray}%s {%s}%s {reset}> %s' % (self.time(), level['color'], level['name'], msg)).format(**attribs)
+			if level.get('fatal') == True: formatted = ('{gray}%s {bold}{underline}{%s}%s{underline-off} {white}> {underline}%s{reset}' % (self.time(), level['color'], level['name'], msg)).format(**attribs)
+			else: formatted = ('{gray}%s %s%s {reset}> %s' % (self.time(), color, level['name'], msg)).format(**attribs)
 			print(formatted)
 		return _level
 
 	def time(self):
 		return strftime('%I:%M:%S %p', localtime())
+
+	def rgb(self, r, g, b):
+		return '\x1b[38;2;%s;%s;%am' % (r, g, b)
+
+	def make_valid(self, name):
+		return ''.join(name.split())

@@ -31,10 +31,10 @@
 [Provided Here](examples/).
 
 # Documentation
-#### Loggaby(debug=False, levels=[]) 
+#### Loggaby(debug=True, levels=[], transports=[TerminalTransport()]) 
 The Loggaby constructor, which creates a `logger` instance.
-  - `transports` {object[]} (An array of objects or specifically [transport instances](loggaby/transports/)) What transports to log to.  An example is provided above. (Default: `[TerminalTransport()]`)
-  - `debug` {Boolean} Whether to print debug messages. (Default: `True`)
+  - `transports` {object[]} (An array of objects or specifically [transport instances](loggaby/transports/)) What transports to log to.  An example is provided above.
+  - `debug` {Boolean} Whether to print debug messages.
   - `levels` Additional custom levels to provide. (An array of `dict`s)
 	- `name` {str} Name of the level that appears in the logs
 	- `color` {str} Color of the `name` (accepted values are [these](https://github.com/Luvella/AnsiKit#colors) or a hex value)
